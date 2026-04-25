@@ -6,61 +6,14 @@ const botao = document.getElementById("btn");
 const tarefa = document.getElementById("tarefa");
 const lista = document.getElementById("lista");
 
-// Adiciona um evento de teclado para permitir adicionar tarefas pressionando Enter
-tarefa.addEventListener("keydown", function (event) {
-  if (event.key === "Enter") {
-    // mesma ação do botão
-  }
-});
-
-// Exibe as tarefas armazenadas no localStorage
-tarefas.forEach(function (valor) {
+// Função para adicionar uma tarefa à lista
+function adicionarTarefa(valor) {
   const item = document.createElement("li");
 
-  // Cria um botão de remover para cada tarefa
+  // Cria o botão de remoção
   const botaoRemover = document.createElement("button");
   botaoRemover.textContent = "x";
 
-  // Adiciona um evento de clique ao botão de remover
-  botaoRemover.addEventListener("click", function () {
-    item.remove();
-
-    // Remove a tarefa do array e atualiza o localStorage
-    tarefas = tarefas.filter((t) => t !== valor); // Remove a tarefa do array
-    localStorage.setItem("tarefas", JSON.stringify(tarefas)); // Atualiza o localStorage
-  });
-
-  // Adiciona o texto da tarefa e o botão de remover ao item da lista
-  const texto = document.createElement("span");
-  texto.textContent = valor;
-
-  item.appendChild(texto);
-  item.appendChild(botaoRemover);
-
-  item.appendChild(botaoRemover);
-  lista.appendChild(item);
-});
-
-// Adiciona um evento de clique ao botão de adicionar tarefa
-botao.addEventListener("click", function () {
-  const valor = tarefa.value;
-
-  // Verifica se o campo de entrada está vazio
-  if (valor.trim() === "") {
-    alert("Por favor, digite uma tarefa.");
-    return;
-  }
-
-  tarefas.push(valor);
-
-  // Cria um novo item da lista para a tarefa adicionada
-  const item = document.createElement("li");
-
-  // Cria um botão de remover para a nova tarefa
-  const botaoRemover = document.createElement("button");
-  botaoRemover.textContent = "x";
-
-  // Adiciona um evento de clique ao botão de remover
   botaoRemover.addEventListener("click", function () {
     item.remove();
 
@@ -69,17 +22,40 @@ botao.addEventListener("click", function () {
     localStorage.setItem("tarefas", JSON.stringify(tarefas));
   });
 
-  // Adiciona o texto da tarefa e o botão de remover ao item da lista
+  // Cria o elemento de texto para a tarefa
   const texto = document.createElement("span");
   texto.textContent = valor;
 
+  // Adiciona o texto e o botão de remoção ao item da lista
   item.appendChild(texto);
   item.appendChild(botaoRemover);
-
-  item.appendChild(botaoRemover);
   lista.appendChild(item);
+}
 
-  // Armazena as tarefas no localStorage
+tarefas.forEach(adicionarTarefa); // Adiciona as tarefas salvas ao carregar a página
+
+// Adiciona um evento de clique ao botão para adicionar uma nova tarefa
+botao.addEventListener("click", function () {
+  const valor = tarefa.value;
+
+  // Verifica se o valor não está vazio ou apenas com espaços
+  if (valor.trim() === ""){
+    alert("Por favor, digite uma tarefa válida.");
+    return;
+  }
+
+  // Adiciona a tarefa ao array e salva no localStorage
+  tarefas.push(valor);
   localStorage.setItem("tarefas", JSON.stringify(tarefas));
-  tarefa.value = ""; // Limpa o campo de entrada após adicionar a tarefa
+
+  adicionarTarefa(valor);
+
+  tarefa.value = "";
+});
+
+// Adiciona um evento de teclado para permitir adicionar a tarefa pressionando Enter
+tarefa.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    botao.click();
+  }
 });
