@@ -17,7 +17,7 @@ button {
   margin: 10px;
 }
 
-// Estilos para os itens da lista
+/* Estilos para os itens da lista */
 li{
 display: flex;
 justify-content: space-between;
