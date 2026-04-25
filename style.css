@@ -3,6 +3,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: red;
 }
 
 /* Estilos para os elementos de entrada e botão */
