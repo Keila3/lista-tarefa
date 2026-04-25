@@ -6,6 +6,13 @@ const botao = document.getElementById("btn");
 const tarefa = document.getElementById("tarefa");
 const lista = document.getElementById("lista");
 
+// Adiciona um evento de teclado para permitir adicionar tarefas pressionando Enter
+tarefa.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    // mesma ação do botão
+  }
+});
+
 // Exibe as tarefas armazenadas no localStorage
 tarefas.forEach(function (valor) {
   const item = document.createElement("li");
