@@ -47,8 +47,13 @@ botao.addEventListener("click", function () {
     return;
   }
 
-  // Adiciona a tarefa ao array e salva no localStorage
-  tarefas.push(valor);
+  // Adiciona a nova tarefa ao array de tarefas
+  tarefas.push({
+    id: Date.now(),
+    texto: valor,
+  }); // Adiciona um objeto com id e texto para cada tarefa
+
+  // Salva as tarefas no localStorage
   localStorage.setItem("tarefas", JSON.stringify(tarefas));
 
   adicionarTarefa(valor);
