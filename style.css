@@ -27,8 +27,6 @@ width: 300px;
 
 /* Estilos para a lista de tarefas */
 #lista{
-    display: flex
+    display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
