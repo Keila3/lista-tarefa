@@ -39,7 +39,7 @@ botao.addEventListener("click", function () {
   const valor = tarefa.value;
 
   // Verifica se o valor não está vazio ou apenas com espaços
-  if (valor.trim() === ""){
+  if (valor.trim() === "") {
     alert("Por favor, digite uma tarefa válida.");
     return;
   }
