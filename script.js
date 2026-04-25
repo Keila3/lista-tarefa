@@ -14,6 +14,9 @@ function adicionarTarefa(valor) {
   const botaoRemover = document.createElement("button");
   botaoRemover.textContent = "x";
 
+  // Adiciona a classe de estilo ao botão de remoção
+  botaoRemover.classList.add("remover");
+
   botaoRemover.addEventListener("click", function () {
     item.remove();
 
